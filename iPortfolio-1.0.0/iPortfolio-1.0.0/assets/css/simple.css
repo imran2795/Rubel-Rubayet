@@ -2,10 +2,14 @@
 
 :root {
   --accent: #0d6efd;
+  --accent-600: #0b5ed7;
+  --accent-700: #0a58ca;
   --text: #1f2937;
   --muted: #6b7280;
   --bg: #ffffff;
   --section-bg: #f8fafc;
+  --card: #ffffff;
+  --border: rgba(0,0,0,0.08);
 }
 
 html { scroll-behavior: smooth; }
@@ -25,9 +29,7 @@ body {
 }
 
 /* Top navbar */
-.site-header .navbar {
-  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-}
+.site-header .navbar { box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
 .navbar-brand { font-weight: 700; }
 .navbar .nav-link { color: var(--text); transition: color .2s ease; }
 .navbar .nav-link.active,
@@ -45,7 +47,9 @@ body {
 /* Hero */
 .hero-simple {
   padding: 96px 0; 
-  background: var(--section-bg);
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(13,110,253,0.06), transparent 60%),
+              radial-gradient(1000px 500px at 110% 10%, rgba(10,88,202,0.05), transparent 60%),
+              var(--section-bg);
 }
 .hero-simple h1 { font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); }
 .hero-simple p { color: var(--muted); font-size: 1.1rem; }
@@ -57,9 +61,34 @@ body {
 /* Utilities */
 .text-muted { color: var(--muted) !important; }
 
+/* Page title (light style) */
+.page-title { background: var(--section-bg); border-bottom: 1px solid var(--border); padding: 28px 0; }
+.page-title h1 { margin: 0; font-weight: 700; }
+.breadcrumbs ol { margin: 0; gap: 6px; display: flex; flex-wrap: wrap; list-style: none; padding-left: 0; }
+.breadcrumbs a { color: var(--muted); text-decoration: none; }
+.breadcrumbs .current { color: var(--text); font-weight: 600; }
+
+.section-title h2 {
+  position: relative;
+  display: inline-block;
+}
+.section-title h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 3px;
+  margin: 10px auto 0;
+}
+
 /* Hover micro-interactions */
 .btn { transition: transform .15s ease, box-shadow .15s ease; }
 .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+.btn-primary { background: var(--accent); border-color: var(--accent); }
+.btn-primary:hover { background: var(--accent-600); border-color: var(--accent-600); }
+.btn-outline-primary { color: var(--accent); border-color: var(--accent); }
+.btn-outline-primary:hover { background: var(--accent); color: #fff; }
 
 .resume-item,
 .contact .info-item,
@@ -72,6 +101,23 @@ body {
 
 img { transition: transform .2s ease, opacity .3s ease; }
 img:hover { transform: scale(1.01); }
+
+/* Cards & items */
+.resume-item, .contact .info-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+.services-list a { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; display: block; color: var(--text); text-decoration: none; }
+.services-list a.active { border-color: var(--accent); color: var(--accent); }
+
+/* Skills progress modern look */
+.skills .progress { height: 10px; background: #eef2f7; border-radius: 999px; }
+.skills .progress .progress-bar { background: linear-gradient(90deg, var(--accent), var(--accent-700)); border-radius: 999px; }
+.skills .skill { display: flex; justify-content: space-between; margin-bottom: 6px; font-weight: 600; }
+.skills .val { color: var(--muted); font-style: normal; }
+
+/* Contact form */
+.php-email-form input, .php-email-form textarea { border-radius: 10px; border: 1px solid var(--border); }
+.php-email-form input:focus, .php-email-form textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 0.25rem rgba(13,110,253,0.15); }
+.php-email-form button { background: var(--accent); border: none; padding: 10px 16px; border-radius: 10px; }
+.php-email-form button:hover { background: var(--accent-600); }
 
 /* Footer */
 .footer { border-top: 1px solid rgba(0,0,0,0.06); }
