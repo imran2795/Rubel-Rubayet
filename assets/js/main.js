@@ -13,13 +13,17 @@
    * Header toggle
    */
   const headerToggleBtn = document.querySelector('.header-toggle');
+  const headerEl = document.querySelector('#header');
 
   function headerToggle() {
-    document.querySelector('#header').classList.toggle('header-show');
+    if (!headerEl || !headerToggleBtn) return;
+    headerEl.classList.toggle('header-show');
     headerToggleBtn.classList.toggle('bi-list');
     headerToggleBtn.classList.toggle('bi-x');
   }
-  headerToggleBtn.addEventListener('click', headerToggle);
+  if (headerToggleBtn && headerEl) {
+    headerToggleBtn.addEventListener('click', headerToggle);
+  }
 
   /**
    * Hide mobile nav on same-page/hash links
@@ -119,9 +123,25 @@
       element: item,
       offset: '80%',
       handler: function(direction) {
+        // Animate all progress bars (old and new card-based structure)
         let progress = item.querySelectorAll('.progress .progress-bar');
         progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%';
+          // Check for data-percentage attribute (new structure)
+          let percentage = el.getAttribute('data-percentage') || el.getAttribute('aria-valuenow');
+          if (percentage) {
+            el.style.width = percentage + '%';
+          }
+        });
+        
+        // Animate new meter-fill elements
+        let meters = item.querySelectorAll('.meter-fill[data-percentage]');
+        meters.forEach(el => {
+          let percentage = el.getAttribute('data-percentage');
+          if (percentage) {
+            setTimeout(() => {
+              el.style.width = percentage + '%';
+            }, 100);
+          }
         });
       }
     });
@@ -207,7 +227,8 @@
   /**
    * Navmenu Scrollspy
    */
-  let navmenulinks = document.querySelectorAll('.navmenu a');
+  // Support both original sidebar nav and new top navbar
+  let navmenulinks = document.querySelectorAll('.navmenu a, .navbar .nav-link[href^="#"]');
 
   function navmenuScrollspy() {
     navmenulinks.forEach(navmenulink => {
@@ -216,7 +237,7 @@
       if (!section) return;
       let position = window.scrollY + 200;
       if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
+        document.querySelectorAll('.navmenu a.active, .navbar .nav-link.active').forEach(link => link.classList.remove('active'));
         navmenulink.classList.add('active');
       } else {
         navmenulink.classList.remove('active');
