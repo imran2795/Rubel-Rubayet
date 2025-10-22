@@ -513,15 +513,18 @@ img:hover { transform: scale(1.01); }
 }
 
 .skill-card {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.15);
   border-radius: var(--radius-lg);
-  padding: var(--space-xl);
+  padding: 2rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .skill-card::before {
@@ -537,8 +540,8 @@ img:hover { transform: scale(1.01); }
 
 .skill-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
-  border-color: var(--color-primary);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: rgba(99, 102, 241, 0.3);
 }
 
 .skill-card:hover::before {
@@ -628,8 +631,9 @@ img:hover { transform: scale(1.01); }
 .skill-description {
   font-size: 0.9rem;
   color: #64748b;
-  line-height: 1.6;
+  line-height: 1.7;
   margin: 0;
+  flex-grow: 1;
 }
 
 /* Animate progress bars when in view */
@@ -838,6 +842,29 @@ img:hover {
   .resume-item,
   .contact .info-item {
     padding: var(--space-lg);
+  }
+  
+  /* Skills cards mobile optimization */
+  .skill-card {
+    padding: var(--space-lg);
+  }
+  
+  .skill-icon {
+    width: 56px;
+    height: 56px;
+    margin-bottom: var(--space-md);
+  }
+  
+  .skill-icon i {
+    font-size: 24px;
+  }
+  
+  .skill-card h4 {
+    font-size: 1.1rem;
+  }
+  
+  .skill-description {
+    font-size: 0.85rem;
   }
 }
 

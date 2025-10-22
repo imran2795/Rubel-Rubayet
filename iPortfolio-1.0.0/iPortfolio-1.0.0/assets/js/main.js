@@ -123,9 +123,14 @@
       element: item,
       offset: '80%',
       handler: function(direction) {
+        // Animate all progress bars (old and new card-based structure)
         let progress = item.querySelectorAll('.progress .progress-bar');
         progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%';
+          // Check for data-percentage attribute (new structure)
+          let percentage = el.getAttribute('data-percentage') || el.getAttribute('aria-valuenow');
+          if (percentage) {
+            el.style.width = percentage + '%';
+          }
         });
       }
     });
