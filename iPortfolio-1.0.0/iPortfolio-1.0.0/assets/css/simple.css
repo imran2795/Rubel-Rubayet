@@ -14,18 +14,26 @@ body {
   background: var(--bg);
 }
 
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* Top navbar */
 .site-header .navbar {
   box-shadow: 0 1px 8px rgba(0,0,0,0.06);
 }
 .navbar-brand { font-weight: 700; }
-.navbar .nav-link {
-  color: var(--text);
-}
+.navbar .nav-link { color: var(--text); transition: color .2s ease; }
 .navbar .nav-link.active,
-.navbar .nav-link:hover {
-  color: var(--accent);
-}
+.navbar .nav-link:hover { color: var(--accent); }
+.navbar .navbar-brand { transition: transform .2s ease; }
+.navbar .navbar-brand:hover { transform: translateY(-1px); }
 
 /* Sections */
 .section { padding: 64px 0; }
@@ -42,8 +50,28 @@ body {
 .hero-simple h1 { font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); }
 .hero-simple p { color: var(--muted); font-size: 1.1rem; }
 
+/* Soft reveal helpers (paired with AOS) */
+.reveal-soft { opacity: 0; transform: translateY(12px); }
+.aos-animate.reveal-soft { opacity: 1; transform: translateY(0); transition: all .6s ease-out; }
+
 /* Utilities */
 .text-muted { color: var(--muted) !important; }
+
+/* Hover micro-interactions */
+.btn { transition: transform .15s ease, box-shadow .15s ease; }
+.btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+
+.resume-item,
+.contact .info-item,
+.services-list a,
+.card { transition: transform .2s ease, box-shadow .2s ease; }
+.resume-item:hover,
+.contact .info-item:hover,
+.services-list a:hover,
+.card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+
+img { transition: transform .2s ease, opacity .3s ease; }
+img:hover { transform: scale(1.01); }
 
 /* Footer */
 .footer { border-top: 1px solid rgba(0,0,0,0.06); }
