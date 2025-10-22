@@ -132,6 +132,17 @@
             el.style.width = percentage + '%';
           }
         });
+        
+        // Animate new meter-fill elements
+        let meters = item.querySelectorAll('.meter-fill[data-percentage]');
+        meters.forEach(el => {
+          let percentage = el.getAttribute('data-percentage');
+          if (percentage) {
+            setTimeout(() => {
+              el.style.width = percentage + '%';
+            }, 100);
+          }
+        });
       }
     });
   });
