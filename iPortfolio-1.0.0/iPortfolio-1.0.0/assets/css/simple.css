@@ -1,0 +1,57 @@
+/* Minimal overrides for a clean, simple look */
+
+:root {
+  --accent: #0d6efd;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --bg: #ffffff;
+  --section-bg: #f8fafc;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* Top navbar */
+.site-header .navbar {
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+.navbar-brand { font-weight: 700; }
+.navbar .nav-link {
+  color: var(--text);
+}
+.navbar .nav-link.active,
+.navbar .nav-link:hover {
+  color: var(--accent);
+}
+
+/* Sections */
+.section { padding: 64px 0; }
+.section { scroll-margin-top: 72px; }
+.section-title { text-align: center; margin-bottom: 32px; }
+.section-title h2 { font-weight: 700; margin-bottom: 8px; }
+.section-title p { color: var(--muted); max-width: 720px; margin: 0 auto; }
+
+/* Hero */
+.hero-simple {
+  padding: 96px 0; 
+  background: var(--section-bg);
+}
+.hero-simple h1 { font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); }
+.hero-simple p { color: var(--muted); font-size: 1.1rem; }
+
+/* Utilities */
+.text-muted { color: var(--muted) !important; }
+
+/* Footer */
+.footer { border-top: 1px solid rgba(0,0,0,0.06); }
+
+/* Remove leftover sidebar spacing if any */
+@media (min-width: 1200px) {
+  .header~main, .header~#footer { margin-left: 0 !important; }
+}
+
+/* Ensure main content is full-width regardless of original sidebar layout */
+.main { margin-left: 0 !important; }
