@@ -1,0 +1,15 @@
+# OS & editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Archives
+*.zip
+*.rar
+*.7z
+
+# Logs
+*.log
+
+# Node (if ever added)
+node_modules/
